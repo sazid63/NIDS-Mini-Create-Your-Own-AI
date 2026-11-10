@@ -1,6 +1,5 @@
 {
-  "name": "NIDS Mini — AI Network Intrusion Detection Studio",
-  "description": "A 7–14 day interactive personal AI mentor and workbench to guide you in building, training, and evaluating a 3M–5M parameter PyTorch network intrusion detector with zero-cleanup datasets.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "NIDS Mini: Build Your Own AI Guard",
+  "description": "A beginner-first guide and real project: build, train, test and deploy a 3.5M-parameter AI that spots network attacks, using real CIC-IDS2017 data.",
+  "requestFramePermissions": []
 }

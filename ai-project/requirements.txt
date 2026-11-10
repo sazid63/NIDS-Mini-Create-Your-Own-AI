@@ -1,0 +1,13 @@
+# ▶ PART 1: Tools for building and teaching the AI (steps 1 to 4)
+torch
+numpy
+pandas
+pyarrow
+scikit-learn
+huggingface_hub
+
+# ▶ PART 2: Tools for packing and serving it (step 5)
+onnx
+onnxruntime
+fastapi
+uvicorn

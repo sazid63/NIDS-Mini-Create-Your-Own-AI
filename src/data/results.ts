@@ -1,0 +1,11 @@
+// Real numbers from running ai-project/ on the full CIC-IDS2017 table (generated from data/history.json and data/report.json).
+export const RESULTS = {
+  accuracy: 99.66,
+  macroF1: 80.7,
+  parameters: 3518319,
+  onnxMB: 14.1,
+  msPerFlow: 0.75,
+  rows: 2827677,
+  epochs: [{"epoch": 1, "loss": 0.0257, "quiz": 0.639}, {"epoch": 2, "loss": 0.0099, "quiz": 0.693}, {"epoch": 3, "loss": 0.0101, "quiz": 0.699}, {"epoch": 4, "loss": 0.022, "quiz": 0.65}, {"epoch": 5, "loss": 0.0092, "quiz": 0.721}, {"epoch": 6, "loss": 0.0064, "quiz": 0.748}, {"epoch": 7, "loss": 0.0057, "quiz": 0.682}, {"epoch": 8, "loss": 0.0051, "quiz": 0.771}, {"epoch": 9, "loss": 0.0047, "quiz": 0.745}, {"epoch": 10, "loss": 0.0042, "quiz": 0.802}, {"epoch": 11, "loss": 0.0037, "quiz": 0.763}, {"epoch": 12, "loss": 0.0033, "quiz": 0.749}, {"epoch": 13, "loss": 0.0029, "quiz": 0.78}, {"epoch": 14, "loss": 0.0026, "quiz": 0.776}, {"epoch": 15, "loss": 0.0025, "quiz": 0.773}],
+  classes: [{"name": "BENIGN", "f1": 0.998, "precision": 1.0, "recall": 0.997, "support": 340668}, {"name": "Bot", "f1": 0.577, "precision": 0.557, "recall": 0.597, "support": 293}, {"name": "DDoS", "f1": 0.999, "precision": 0.999, "recall": 0.999, "support": 19204}, {"name": "DoS GoldenEye", "f1": 0.98, "precision": 0.964, "recall": 0.995, "support": 1544}, {"name": "DoS Hulk", "f1": 0.992, "precision": 0.985, "recall": 1.0, "support": 34518}, {"name": "DoS Slowhttptest", "f1": 0.96, "precision": 0.952, "recall": 0.968, "support": 825}, {"name": "DoS slowloris", "f1": 0.981, "precision": 0.971, "recall": 0.991, "support": 870}, {"name": "FTP-Patator", "f1": 0.997, "precision": 0.997, "recall": 0.997, "support": 1190}, {"name": "Heartbleed", "f1": 1.0, "precision": 1.0, "recall": 1.0, "support": 2}, {"name": "Infiltration", "f1": 0.222, "precision": 0.333, "recall": 0.167, "support": 6}, {"name": "PortScan", "f1": 0.995, "precision": 0.99, "recall": 0.999, "support": 23820}, {"name": "SSH-Patator", "f1": 0.929, "precision": 0.87, "recall": 0.997, "support": 885}, {"name": "Web Attack - Brute Force", "f1": 0.793, "precision": 0.657, "recall": 1.0, "support": 226}, {"name": "Web Attack - Sql Injection", "f1": 0.667, "precision": 0.667, "recall": 0.667, "support": 3}, {"name": "Web Attack - XSS", "f1": 0.02, "precision": 0.5, "recall": 0.01, "support": 98}],
+};

@@ -1,23 +1,86 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
+/* NIDS Mini: a small exhibition. Gallery-white ground, ink text, one saturated wall colour per room. */
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-sans: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --color-ink: #161a33;
+  --color-ink-2: #454b6e;
+  --color-gallery: #f3f4f8;
+  --color-line: #d8dbe8;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+:root {
+  --ink: #161a33;
+  --ink-2: #454b6e;
+  --gallery: #f3f4f8;
+  --line: #d8dbe8;
+  --focus: #1f5fe0;
+  --quiet: #6f779c;
+  --navy: #1e2a78;
+  --amber: #ffb627;
+  --violet: #6d4deb;
+  --coral: #ff6b57;
+  --teal: #12b5a6;
+  --blue: #1f5fe0;
 }
-::-webkit-scrollbar-track {
-  background: #0b0f17;
+
+/* One wall colour per room. --on-wall is the text colour that reads on it. */
+[data-room="0"] { --wall: var(--navy); --on-wall: #ffffff; }
+[data-room="1"] { --wall: var(--amber); --on-wall: #161a33; }
+[data-room="2"] { --wall: var(--violet); --on-wall: #ffffff; }
+[data-room="3"] { --wall: var(--coral); --on-wall: #161a33; }
+[data-room="4"] { --wall: var(--teal); --on-wall: #161a33; }
+[data-room="5"] { --wall: var(--blue); --on-wall: #ffffff; }
+
+/* Colours for the numbered parts of a piece of code. */
+.part-0 { --p: #ffb627; --on-p: #161a33; }
+.part-1 { --p: #8c6bff; --on-p: #161a33; }
+.part-2 { --p: #ff6b57; --on-p: #161a33; }
+.part-3 { --p: #12b5a6; --on-p: #161a33; }
+.part-4 { --p: #4a8dff; --on-p: #161a33; }
+.part-5 { --p: #4fb04a; --on-p: #161a33; }
+.part-6 { --p: #e85aa6; --on-p: #161a33; }
+.part-7 { --p: #8b93b8; --on-p: #161a33; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background: var(--gallery);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
+
+/* The parts of the page the browser draws by itself, themed. */
+::selection { background: #ffd978; color: var(--ink); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+code, kbd, pre { font-family: var(--font-mono); font-variant-ligatures: none; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #b9bed6; border-radius: 6px; border: 2px solid var(--gallery); }
+::-webkit-scrollbar-thumb:hover { background: #8d94b6; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Headings balance their lines; paragraphs avoid lonely last words. */
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+
+/* The one authored motion: when you walk into a room, the big numeral and the picture settle into place.
+   Transform only, so the content is always visible even if the browser pauses animations. */
+@keyframes walk-in { from { transform: translateY(16px); } to { transform: none; } }
+@keyframes numeral-in { from { transform: translateX(-18px); } to { transform: none; } }
+.room-enter .plate { animation: walk-in 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.room-enter .numeral { animation: numeral-in 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .room-enter .plate, .room-enter .numeral { animation: none; }
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
-}
+
+.skip-link { position: absolute; left: -999px; top: 0.5rem; background: var(--ink); color: #fff; padding: 0.6rem 1rem; border-radius: 6px; z-index: 100; }
+.skip-link:focus { left: 0.5rem; }

@@ -1,0 +1,5 @@
+# ▶ PART 1: The tiny tool list the deployed guard needs (no PyTorch, no pandas)
+numpy
+onnxruntime
+fastapi
+uvicorn
