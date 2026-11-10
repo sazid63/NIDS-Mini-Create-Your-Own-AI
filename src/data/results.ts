@@ -1,4 +1,4 @@
-// Real numbers from running ai-project/ on the full CIC-IDS2017 table (generated from data/history.json and data/report.json).
+// Real numbers measured by running the code in ai-project/ on the full CIC-IDS2017 table.
 export const RESULTS = {
   accuracy: 99.66,
   macroF1: 80.7,

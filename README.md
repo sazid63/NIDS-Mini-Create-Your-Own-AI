@@ -1,60 +1,35 @@
-# NIDS Mini: Build Your Own AI Guard
+# NIDS Mini: a beginner's guide to building an AI guard
 
-A beginner-first, jargon-free guide **and a real, tested project**. Follow five rooms to build, train, test and deploy a small AI (3,518,319 parameters) that spots network attacks, using real data from the CIC-IDS2017 dataset.
+This repository is an **educational resource**, not a finished product. It is a step-by-step guide (a website) that teaches a complete beginner, from about age 12, to build a small AI called NIDS Mini **by themselves**: an AI with 3.5 million adjustable knobs that spots network attacks, trained on real data.
 
-The guide is written so a 12-year-old can follow it: every command, every part of every program, and every tricky word is explained in everyday language, and each room opens with an illustration of what it does.
+Nothing here has to be run to use the guide. The learner follows the guide, installs the software it tells them to install, writes the files, and builds NIDS Mini on their own computer.
+
+## What the guide teaches
+
+Six rooms, in order. Each room has an illustration, a plain-language glossary, numbered steps, every command explained, and every code file cut into colour-coded parts that say **what** the part does and **why** it is needed.
+
+0. **Start here**: install Python, a code editor, a private toolbox, and the tools.
+1. **Data Room**: download real traffic records (CIC-IDS2017), clean them, split them into learn, quiz and exam piles.
+2. **Brain Room**: build the neural network (78 inputs, 6 shortcut blocks, 15 outputs, 3,518,319 knobs).
+3. **Training Room**: Focal Loss, the AdamW coach, 15 rounds of practice, keep the best brain.
+4. **Testing Room**: an honest exam with accuracy, precision, recall and Macro F1, including where the AI is weak.
+5. **Launch Room**: pack the brain as ONNX, give it a web address with FastAPI, optionally ship it in Docker and put it online.
 
 ## What is in this repository
 
 | Folder | What it is |
 | --- | --- |
-| `src/` | The guide website (React 19, TypeScript, Tailwind CSS v4, Vite). |
-| `ai-project/` | The real Python project the guide teaches. Every code sample on the website is read directly from these files, so what you read is what was tested. |
+| `src/` | The guide website (React, TypeScript, Tailwind CSS, Vite). |
+| `ai-project/` | Reference copies of the Python files the guide teaches, so a learner can compare their own files. The website reads its code samples from these files. |
 
-## The five rooms
+The numbers quoted in the guide (99.66% accuracy, 80.7% Macro F1, 3,518,319 parameters) come from a real run of those files on the full dataset.
 
-0. **Start here**: install Python, make a private toolbox, install the tools.
-1. **Data Room**: download 2.8 million real traffic records and turn them into 78 clean numbers per row, in three piles (learn, quiz, exam).
-2. **Brain Room**: build ResFlowNet: 78 inputs, a start layer, 6 shortcut blocks (width 536), 15 outputs. 3,518,319 parameters.
-3. **Training Room**: Focal Loss, AdamW and a one-cycle learning-rate plan, 15 rounds, keeping the best brain.
-4. **Testing Room**: an honest exam on unseen traffic, with precision, recall and Macro F1 per attack kind.
-5. **Launch Room**: pack the brain as ONNX, serve it with FastAPI, put it in a Docker box, deploy to Hugging Face Spaces.
-
-## Results of the real run (full dataset)
-
-| What | Value |
-| --- | --- |
-| Parameters | 3,518,319 |
-| Overall accuracy on the exam pile (424,152 rows) | 99.66% |
-| Macro F1 (fair grade across all 15 kinds) | 80.7% |
-| ONNX file | about 14 MB |
-| Speed on CPU (ONNX Runtime) | about 0.75 ms per flow |
-
-Weak spots are stated on the site: rare kinds (Infiltration, Bot, SQL injection) and Web XSS, which this dataset makes hard to tell apart from Web Brute Force.
-
-## Run the guide website
+## Read the guide
 
 ```bash
 npm install
 npm run dev
 ```
-
-## Run the AI project
-
-```bash
-cd ai-project
-pip install -r requirements.txt
-python get_data.py        # about 370 MB, one time
-python prepare_data.py
-python model.py
-python train.py
-python evaluate.py
-python export_onnx.py
-python predict.py
-python -m uvicorn serve:app --port 8000
-```
-
-Status of the deployment step: the server (`serve.py`) was tested locally. The `Dockerfile` was written following the Hugging Face Docker Spaces rules but was **not** built on the author's machine (the Docker engine was not running), so test `docker build` before relying on it.
 
 ## Data and credits
 

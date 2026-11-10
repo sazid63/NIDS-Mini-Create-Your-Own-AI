@@ -3,6 +3,7 @@ import { Check, Copy } from 'lucide-react';
 import { parseParts, wholeFile } from '../lib/parts';
 import type { CodeSpec, Command } from '../data/types';
 import { RESULTS } from '../data/results';
+import { WHY } from '../data/why';
 
 /* ---------- Copy button ---------- */
 export function CopyButton({ text, label = 'Copy', dark = false }: { text: string; label?: string; dark?: boolean }) {
@@ -98,6 +99,12 @@ export function CodeBreakdown({ spec }: { spec: CodeSpec }) {
               <div className="min-w-0">
                 <p className="m-0 mb-1 text-[0.95rem] font-bold text-ink">What this part does</p>
                 <p className="m-0 text-[1rem] leading-relaxed text-ink">{says?.says ?? ''}</p>
+                {WHY[`${spec.file}:${p.n}`] ? (
+                  <>
+                    <p className="m-0 mb-1 mt-3 text-[0.95rem] font-bold text-ink">Why we need it</p>
+                    <p className="m-0 text-[1rem] leading-relaxed text-ink">{WHY[`${spec.file}:${p.n}`]}</p>
+                  </>
+                ) : null}
                 {says?.lines && says.lines.length > 0 && (
                   <dl className="m-0 mt-3 grid gap-2">
                     {says.lines.map((l, i) => (

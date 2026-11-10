@@ -12,6 +12,16 @@ import serveRaw from '../../ai-project/serve.py?raw';
 import dockerRaw from '../../ai-project/Dockerfile?raw';
 import reqServeRaw from '../../ai-project/requirements-serve.txt?raw';
 
+const SPACE_README = `---
+title: NIDS Mini Guard
+sdk: docker
+app_port: 7860
+---
+
+# NIDS Mini guard
+A small AI that spots network attacks.
+`;
+
 function Bullets({ items }: { items: ReactNode[] }) {
   return (
     <ul className="m-0 max-w-[68ch] list-disc space-y-2 pl-6 text-[1.0625rem]">
@@ -314,7 +324,21 @@ Average brain speed: 0.755 ms per flow  (0.76 s for 1,000 flows)`,
             <p className="m-0 max-w-[68ch]">Next comes the recipe for the box itself.</p>
           </div>
         ),
-        stuck: 'You need Docker Desktop installed and running first. Download it from docker.com, start it, and wait until it says it is running.',
+              },
+      {
+        id: 's5-4a',
+        num: '4a',
+        title: 'Install Docker (only needed for the shipping box)',
+        why: 'Docker is the program that builds and runs shipping boxes. It is a separate download, and it is optional: you can skip Steps 5 and 6 and still have a working guard on your own computer.',
+        extra: (
+          <ol className="m-0 max-w-[68ch] list-decimal space-y-2 pl-6 text-[1.0625rem]">
+            <li>Go to <strong>docker.com</strong>, open the Docker Desktop download page, and download the version for your computer (Windows, Mac or Linux).</li>
+            <li>Run the installer and follow its questions. On Windows it may ask to restart your computer, and to turn on WSL 2. Say yes.</li>
+            <li>Open <strong>Docker Desktop</strong> and wait until it says Docker is running.</li>
+          </ol>
+        ),
+        commands: [{ cmd: 'docker --version', says: 'Checks the install worked. It should print a version number such as "Docker version 27.0.3".' }],
+        stuck: 'If a Docker command says it cannot connect, Docker Desktop is not running yet. Open it and wait for the "running" message.',
       },
       {
         id: 's5-4b',
@@ -341,15 +365,25 @@ Average brain speed: 0.755 ms per flow  (0.76 s for 1,000 flows)`,
         id: 's5-5',
         num: '6',
         title: 'Put it online for free',
-        why: 'Hugging Face Spaces can run a Docker box for free. Your project folder is already set up for it: the Dockerfile uses door 7860 and a normal user, and the README.md in ai-project starts with the settings a Space needs.',
+        why: 'Hugging Face Spaces can run a Docker box for free. Your Dockerfile already uses door 7860 and a normal user, which is what a Space expects. One more small file is needed: a README.md whose first lines tell the Space it is a Docker Space.',
         extra: (
+          <div className="space-y-4">
+            <div className="overflow-hidden rounded-lg border border-line bg-white">
+              <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-2">
+                <span className="text-[0.95rem] font-bold">Make a file called README.md with exactly this</span>
+                <CopyButton text={SPACE_README} label="Copy" />
+              </div>
+              <pre className="m-0 overflow-x-auto p-3 text-[0.85rem]">{SPACE_README}</pre>
+            </div>
+            <p className="m-0 max-w-[68ch] text-[1rem]">The part between the two lines of dashes is read by the hosting site, not by people. "sdk: docker" says this is a Docker box, and "app_port: 7860" says which door to knock on.</p>
           <ol className="m-0 max-w-[68ch] list-decimal space-y-2 pl-6 text-[1.0625rem]">
             <li>Make a free account at <strong>huggingface.co</strong> (you do this yourself).</li>
             <li>Click <strong>New Space</strong>, give it a name, and choose <strong>Docker</strong> as the type.</li>
-            <li>In the Space, open the <strong>Files</strong> tab, then <strong>Add file → Upload files</strong>. Upload: <code className="font-mono text-[0.95em]">Dockerfile</code>, <code className="font-mono text-[0.95em]">README.md</code>, <code className="font-mono text-[0.95em]">serve.py</code>, <code className="font-mono text-[0.95em]">nids_mini.onnx</code>, <code className="font-mono text-[0.95em]">requirements-serve.txt</code>, and the file <code className="font-mono text-[0.95em]">data/meta.json</code> (keep it inside a folder called data).</li>
+            <li>In the Space, open the <strong>Files</strong> tab, then <strong>Add file → Upload files</strong>. Upload: <code className="font-mono text-[0.95em]">Dockerfile</code>, the <code className="font-mono text-[0.95em]">README.md</code> from the box above, <code className="font-mono text-[0.95em]">serve.py</code>, <code className="font-mono text-[0.95em]">nids_mini.onnx</code>, <code className="font-mono text-[0.95em]">requirements-serve.txt</code>, and the file <code className="font-mono text-[0.95em]">data/meta.json</code> (keep it inside a folder called data).</li>
             <li>The Space builds your box by itself. Watch the <strong>Logs</strong> tab. When it says Running, your guard is online.</li>
             <li>Add <code className="font-mono text-[0.95em]">/docs</code> to the end of your Space\'s web address to try it, just like you did on your own computer.</li>
           </ol>
+          </div>
         ),
         stuck: 'Free hosting may put your Space to sleep when nobody is using it, then wake it up when someone visits. The first visit after a sleep can be slow.',
       },

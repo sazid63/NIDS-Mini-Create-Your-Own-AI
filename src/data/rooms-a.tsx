@@ -100,6 +100,13 @@ export const roomsA: Room[] = [
         stuck: 'On some Macs and Linux computers the command is python3 instead of python. If python does not work, use python3 everywhere in this guide.',
       },
       {
+        id: 's0-1b',
+        num: '1b',
+        title: 'Get a place to write code',
+        why: 'You will create about nine small text files. Any plain text editor works, but a code editor colours the words and makes mistakes easier to spot. Visual Studio Code is free and popular: download it from code.visualstudio.com, install it, then use File, Open Folder to open your nids-mini folder (you make that folder in the next step). To make a file, click the New File icon, type the file name (for example model.py), and paste the code in.',
+        stuck: 'Notepad also works if you save each file with the exact name, including the ending (.py), and choose "All files" as the type so Windows does not add .txt.',
+      },
+      {
         id: 's0-2',
         num: '2',
         title: 'Make a project folder with its own private toolbox',
